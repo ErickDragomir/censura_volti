@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "censuravolti"
+version = "0.2.0"
+description = "Censura automatica dei volti nei video, con gestione di audio e metadati. Elaborazione locale."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+keywords = ["privacy", "video", "face-detection", "anonymization", "ffmpeg"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Multimedia :: Video",
+]
+# OpenCV arriva insieme a MediaPipe (che richiede opencv-contrib-python):
+# dichiararlo esplicitamente evita di avere due pacchetti cv2 in conflitto.
+dependencies = [
+    "mediapipe>=0.10.14",
+    "opencv-contrib-python>=4.8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.5"]
+
+[project.scripts]
+censuravolti = "censuravolti.cli:main"
+
+[project.gui-scripts]
+censuravolti-gui = "censuravolti.gui:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]

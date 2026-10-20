@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Modelli e video (mai nel repository)
+*.tflite
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.webm
+*.m4v
+.censuravolti_*/
+
+# Editor / sistema operativo
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
